@@ -1,66 +1,57 @@
 import { useState } from 'react';
 import './Food.css';
 
-const PRICE_PER_ITEM = 8; // одинаковая цена
+const PRICE = 8;
 
 function Food() {
   const [foods, setFoods] = useState([
     {
       name: "Pizza",
       ingredients: ["Dough", "Tomato Sauce", "Mozzarella", "Basil"],
-      isOpen: false,
-      image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
+      recipe: [
+        "Roll out the dough",
+        "Spread tomato sauce",
+        "Add mozzarella",
+        "Bake at 220°C for 12 minutes",
+        "Add basil before serving"
+      ],
+      image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop",
+      open: false
     },
     {
       name: "Burger",
       ingredients: ["Bun", "Chicken Patty", "Cheese", "Lettuce"],
-      isOpen: false,
-      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop"
+      recipe: [
+        "Grill the chicken patty",
+        "Toast the buns",
+        "Assemble burger with sauce",
+        "Add cheese and lettuce"
+      ],
+      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop",
+      open: false
     },
     {
       name: "Pasta",
       ingredients: ["Pasta", "Tomato Sauce", "Parmesan"],
-      isOpen: false,
-      image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop"
+      recipe: [
+        "Boil pasta until al dente",
+        "Heat tomato sauce",
+        "Mix pasta with sauce",
+        "Top with parmesan"
+      ],
+      image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop",
+      open: false
     }
   ]);
 
   const [cart, setCart] = useState([]);
-  const [newFood, setNewFood] = useState("");
-  const [newIngredients, setNewIngredients] = useState("");
-  const [newImage, setNewImage] = useState("");
 
-  const toggleIngredients = (index) => {
+  const toggleOpen = (index) => {
     setFoods(
-      foods.map((food, i) =>
-        i === index ? { ...food, isOpen: !food.isOpen } : food
+      foods.map((f, i) =>
+        i === index ? { ...f, open: !f.open } : f
       )
     );
-  };
-
-  const handleAddFood = () => {
-    if (!newFood.trim()) return;
-
-    const ingredientsArray = newIngredients
-      .split(',')
-      .map(i => i.trim())
-      .filter(Boolean);
-
-    setFoods([
-      ...foods,
-      {
-        name: newFood,
-        ingredients: ingredientsArray.length ? ingredientsArray : ["No ingredients"],
-        isOpen: false,
-        image:
-          newImage ||
-          "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop"
-      }
-    ]);
-
-    setNewFood("");
-    setNewIngredients("");
-    setNewImage("");
   };
 
   const addToCart = (food) => {
@@ -71,89 +62,81 @@ function Food() {
     setCart(cart.filter((_, i) => i !== index));
   };
 
-  const totalPrice = cart.length * PRICE_PER_ITEM;
-
   return (
-    <div className="food-container">
-      <h2 className="food-title">🍔 Fast Food Menu</h2>
+    <div className="menu-layout">
+      
+      {/* MENU */}
+      <div className="menu">
+        <h2>🍴 Fast Food Menu</h2>
 
-      {/* ADD FOOD */}
-      <div className="add-food-panel">
-        <input
-          value={newFood}
-          onChange={(e) => setNewFood(e.target.value)}
-          placeholder="🍕 Food name"
-        />
-        <input
-          value={newIngredients}
-          onChange={(e) => setNewIngredients(e.target.value)}
-          placeholder="🥬 Ingredients (comma separated)"
-        />
-        <input
-          value={newImage}
-          onChange={(e) => setNewImage(e.target.value)}
-          placeholder="🖼 Image URL"
-        />
-        <button onClick={handleAddFood}>➕ Add Food</button>
+        <div className="food-grid">
+          {foods.map((food, index) => (
+            <div className="food-card" key={index}>
+              <img src={food.image} alt={food.name} />
+
+              <div className="food-content">
+                <h3>{food.name}</h3>
+                <p className="price">💰 {PRICE} €</p>
+
+                <button onClick={() => addToCart(food)}>
+                  🛒 Add to cart
+                </button>
+
+                <span
+                  className="details-toggle"
+                  onClick={() => toggleOpen(index)}
+                >
+                  {food.open ? "Hide details ▲" : "Show details ▼"}
+                </span>
+
+                {food.open && (
+                  <div className="details">
+                    <strong>Ingredients:</strong>
+                    <ul>
+                      {food.ingredients.map((i, idx) => (
+                        <li key={idx}>✓ {i}</li>
+                      ))}
+                    </ul>
+
+                    <strong>Recipe:</strong>
+                    <ol>
+                      {food.recipe.map((step, idx) => (
+                        <li key={idx}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* CART */}
-      <div className="cart">
+      <aside className="cart">
         <h3>🛒 Cart</h3>
 
-        {cart.length === 0 && <p className="empty-cart">Cart is empty</p>}
+        {cart.length === 0 && (
+          <p className="empty">Cart is empty</p>
+        )}
 
         {cart.map((item, index) => (
           <div className="cart-item" key={index}>
             <span>{item.name}</span>
-            <span>{PRICE_PER_ITEM} €</span>
-            <button onClick={() => removeFromCart(index)}>❌</button>
+            <span>{PRICE} €</span>
+            <button onClick={() => removeFromCart(index)}>✕</button>
           </div>
         ))}
 
         <div className="cart-total">
-          Total: <strong>{totalPrice} €</strong>
+          Total: <strong>{cart.length * PRICE} €</strong>
         </div>
-      </div>
 
-      {/* FOOD GRID */}
-      <div className="food-grid">
-        {foods.map((food, index) => (
-          <div className="food-card" key={index}>
-            <img
-              src={food.image}
-              alt={food.name}
-              onClick={() => toggleIngredients(index)}
-            />
+        <button className="checkout">
+          ✅ Checkout
+        </button>
+      </aside>
 
-            <div className="food-card-body">
-              <h3 onClick={() => toggleIngredients(index)}>
-                {food.isOpen ? '▼' : '▶'} {food.name}
-              </h3>
-
-              <p className="price">💰 {PRICE_PER_ITEM} €</p>
-
-              <button
-                className="add-cart-btn"
-                onClick={() => addToCart(food)}
-              >
-                🛒 Add to cart
-              </button>
-
-              {food.isOpen && (
-                <div className="ingredients">
-                  <strong>Ingredients:</strong>
-                  <ul>
-                    {food.ingredients.map((i, idx) => (
-                      <li key={idx}>✓ {i}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

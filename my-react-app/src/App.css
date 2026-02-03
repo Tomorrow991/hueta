@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "GTA";
+  src: url("./fonts/gtapricedown_black.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +12,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   color: #333;
   min-height: 100vh;
@@ -14,44 +21,57 @@ body {
   align-items: center;
   position: relative;
   overflow-x: hidden;
-  background: 
+  background:
     linear-gradient(135deg, rgba(255, 87, 34, 0.9), rgba(244, 67, 54, 0.9)),
-    url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920&h=1080&fit=crop&blend=ff5722&blend-mode=overlay') center/cover no-repeat fixed;
+    url("https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1920&h=1080&fit=crop&blend=ff5722&blend-mode=overlay")
+      center/cover no-repeat fixed;
 }
 
 /* Overlay pattern */
 body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0,0,0,.02) 50px, rgba(0,0,0,.02) 52px),
-    repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(0,0,0,.02) 50px, rgba(0,0,0,.02) 52px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Multiple food images floating */
-body::after {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-image:
-    url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&h=200&fit=crop'),
-    url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop'),
-    url('https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop'),
-    url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&h=200&fit=crop'),
-    url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&h=200&fit=crop'),
-    url('https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=200&h=200&fit=crop');
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 50px,
+      rgba(0, 0, 0, 0.02) 50px,
+      rgba(0, 0, 0, 0.02) 52px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 50px,
+      rgba(0, 0, 0, 0.02) 50px,
+      rgba(0, 0, 0, 0.02) 52px
+    );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Multiple food images floating */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    url("https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200&h=200&fit=crop"),
+    url("https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&h=200&fit=crop"),
+    url("https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200&h=200&fit=crop"),
+    url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&h=200&fit=crop"),
+    url("https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=200&h=200&fit=crop"),
+    url("https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=200&h=200&fit=crop");
   background-size: 150px 150px;
   background-repeat: repeat;
-  background-position: 
+  background-position:
     0px 0px,
     200px 100px,
     400px 50px,
@@ -116,7 +136,8 @@ body::after {
   z-index: 9999;
   transition: transform 0.1s ease;
   animation: rotate 2s linear infinite;
-  filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.8)) drop-shadow(0 0 20px rgba(255, 87, 34, 0.6));
+  filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.8))
+    drop-shadow(0 0 20px rgba(255, 87, 34, 0.6));
 }
 
 @keyframes rotate {
@@ -136,18 +157,27 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, rgba(255, 87, 34, 0.95), rgba(244, 67, 54, 0.95));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 87, 34, 0.95),
+    rgba(244, 67, 54, 0.95)
+  );
   backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 87, 34, 0.5);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(255, 87, 34, 0.5);
   text-align: center;
   border-radius: 0 0 20px 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 header h1 {
+  font-family: "GTA", sans-serif;
   margin-bottom: 15px;
   font-size: 2.5rem;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.5);
+  text-shadow:
+    3px 3px 6px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.5);
   background: linear-gradient(to right, #fff, #ffe57f, #fff);
   background-size: 200% 200%;
   -webkit-background-clip: text;
@@ -189,13 +219,18 @@ header nav ul li a {
 }
 
 header nav ul li a::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -204,7 +239,11 @@ header nav ul li a:hover::before {
 }
 
 header nav ul li a:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.2)
+  );
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
@@ -213,7 +252,12 @@ header hr {
   margin-top: 15px;
   border: none;
   height: 2px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
 }
 
 /* Food component styles */
@@ -224,7 +268,7 @@ header hr {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
   border-radius: 30px;
-  box-shadow: 
+  box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.5),
     0 0 100px rgba(255, 87, 34, 0.3),
     inset 0 0 60px rgba(255, 255, 255, 0.1);
@@ -234,7 +278,7 @@ header hr {
 }
 
 .food-container::before {
-  content: '🍔 🍕 🌭 🍟 🌮 🥤';
+  content: "🍔 🍕 🌭 🍟 🌮 🥤";
   position: absolute;
   top: 0;
   left: 0;
@@ -275,7 +319,8 @@ header hr {
 }
 
 @keyframes gradientText {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
@@ -299,7 +344,8 @@ header hr {
 input[type="text"] {
   background: rgba(255, 255, 255, 0.95);
   border: 2px solid transparent;
-  background-image: linear-gradient(white, white), linear-gradient(135deg, #ff5722, #ff9800);
+  background-image:
+    linear-gradient(white, white), linear-gradient(135deg, #ff5722, #ff9800);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   transition: all 0.3s ease;
@@ -308,7 +354,9 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  box-shadow: 0 0 20px rgba(255, 87, 34, 0.5), 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 0 20px rgba(255, 87, 34, 0.5),
+    0 8px 25px rgba(0, 0, 0, 0.2);
   transform: scale(1.02);
 }
 
@@ -323,7 +371,7 @@ button {
 }
 
 button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -332,7 +380,9 @@ button::before {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
   transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+  transition:
+    width 0.6s,
+    height 0.6s;
 }
 
 button:hover::before {
@@ -368,13 +418,18 @@ button:active {
 }
 
 .food-container > div:last-of-type > div::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 152, 0, 0.15), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 152, 0, 0.15),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -384,13 +439,19 @@ button:active {
 
 /* Footer styles */
 footer {
-  background: linear-gradient(135deg, rgba(255, 87, 34, 0.95), rgba(244, 67, 54, 0.95));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 87, 34, 0.95),
+    rgba(244, 67, 54, 0.95)
+  );
   backdrop-filter: blur(20px);
   color: white;
   padding: 40px 20px;
   text-align: center;
   margin-top: 50px;
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 87, 34, 0.5);
+  box-shadow:
+    0 -8px 32px rgba(0, 0, 0, 0.4),
+    0 0 60px rgba(255, 87, 34, 0.5);
   border-radius: 20px 20px 0 0;
   position: relative;
   overflow: hidden;
@@ -398,13 +459,18 @@ footer {
 }
 
 footer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
 }
 
 footer p {
@@ -456,7 +522,8 @@ footer a:hover {
 
 /* Animations */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {

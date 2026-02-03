@@ -9,13 +9,15 @@ function Header() {
   };
 
   return (
-    <header style={{
+  <header
+    style={{
       backgroundColor: 'rgba(44, 62, 80, 0.7)',
       backdropFilter: 'blur(10px)',
       color: 'white',
-      padding: '20px'
-    }}>
-      <h1>Жир</h1>
+      padding: '20px' 
+    }}
+  >
+      <h1>Black Star</h1>
       <nav>
         <ul>
           <li>
