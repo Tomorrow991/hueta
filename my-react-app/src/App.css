@@ -31,7 +31,6 @@ body {
       center/cover no-repeat fixed;
 }
 
-
 /* Overlay pattern */
 body::before {
   content: "";
@@ -137,7 +136,6 @@ body::after {
   min-height: 100vh;
 }
 
-
 /* Pizza cursor follower */
 .burger-cursor {
   position: fixed;
@@ -170,8 +168,6 @@ body::after {
     background-position: 200% center;
   }
 }
-
-
 
 /* Food component styles */
 .food-container {
@@ -446,4 +442,37 @@ footer a:hover {
 
 .food-container > div:last-of-type > div:hover {
   animation: float 0.6s ease-in-out;
+}
+
+.main-layout {
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1400px;
+  padding: 30px;
+}
+.left-menu {
+  position: fixed;
+  top: 120px;
+  left: 20px; /* ← отступ от края, поставь 0 если хочешь прям в край */
+
+  width: 220px;
+  max-height: calc(100vh - 140px);
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  z-index: 900;
+}
+
+
+.food-page {
+  flex: 1;
+  min-width: 0;
 }

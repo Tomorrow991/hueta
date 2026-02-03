@@ -1,68 +1,55 @@
 .left-menu {
-  position: fixed;
-  top: 100px;                 /* отступ от Header */
-  left: 20px;
+  width: 220px;
+  max-height: calc(100vh - 120px);
+  position: sticky;
+  top: 120px;
 
-  width: 240px;
-  max-height: 70vh;           /* 🔥 ограничение по высоте */
-  overflow-y: auto;           /* 🔥 скролл внутри меню */
-
-  background: rgba(216, 98, 19, 0.96);
-  backdrop-filter: blur(16px);
-
-  padding: 20px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
   border-radius: 18px;
+  padding: 20px;
 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  z-index: 900;
-}
-
-/* список */
-.nav-list {
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 0;
-  margin: 0;
+  gap: 12px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* пункты */
-.nav-link {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #faf5f5;
+.left-menu-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
 
-  padding: 12px 16px;
+.left-menu-btn {
+  padding: 12px;
   border-radius: 12px;
+  border: none;
+  cursor: pointer;
 
-  background: linear-gradient(
-    135deg,
-    rgba(255, 87, 34, 0.12),
-    rgba(255, 152, 0, 0.12)
-  );
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
 
-  transition: 0.25s ease;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
 }
 
-/* hover */
-.nav-link:hover {
-  transform: translateX(8px);
-  background: linear-gradient(135deg, #ff5722, #ff9800);
-  color: #eb0404;
-  box-shadow: 0 10px 25px rgba(255, 87, 34, 0.5);
+.left-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(6px);
 }
 
-/* 🔽 аккуратный скролл */
-.left-menu::-webkit-scrollbar {
-  width: 8px;
+/* АКЦЕНТНАЯ КНОПКА СУШИ */
+.sushi-btn {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.6);
 }
 
-.left-menu::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.left-menu::-webkit-scrollbar-thumb {
-  background: linear-gradient(#ff5722, #ff9800);
-  border-radius: 10px;
+.sushi-btn:hover {
+  transform: translateX(8px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(255, 87, 34, 0.9);
 }

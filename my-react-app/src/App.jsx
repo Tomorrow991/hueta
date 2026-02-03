@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
-import Header from './Header';
-import Footer from './Footer';
-import Food from './Food';
-import Payment from './Payment';
+import Header from "./Header";
+import Footer from "./Footer";
+import Food from "./Food";
+import Sushi from "./sushi";
+import Payment from "./Payment";
 import LeftMenu from "./LeftMenu";
 
 function App() {
@@ -17,30 +18,38 @@ function App() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
-    const emojis = ['🍔', '🍕', '🌭', '🍟', '🌮', '🍿', '🥤', '🍦', '🍩', '🧇', '🥙', '🌯'];
-    const generatedEmojis = [];
+    const emojis = [
+      "🍔",
+      "🍕",
+      "🌭",
+      "🍟",
+      "🌮",
+      "🍿",
+      "🥤",
+      "🍦",
+      "🍩",
+      "🧇",
+      "🥙",
+      "🌯",
+    ];
 
-    for (let i = 0; i < 20; i++) {
-      generatedEmojis.push({
-        emoji: emojis[Math.floor(Math.random() * emojis.length)],
-        left: Math.random() * 100,
-        delay: Math.random() * 15,
-        duration: 15 + Math.random() * 10
-      });
-    }
+    const generated = Array.from({ length: 20 }).map(() => ({
+      emoji: emojis[Math.floor(Math.random() * emojis.length)],
+      left: Math.random() * 100,
+      delay: Math.random() * 15,
+      duration: 15 + Math.random() * 10,
+    }));
 
-    setFoodEmojis(generatedEmojis);
+    setFoodEmojis(generated);
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
-    <div>
-      {/* Floating food emojis */}
+    <>
+      {/* FLOATING EMOJIS */}
       {foodEmojis.map((item, index) => (
         <div
           key={index}
@@ -48,35 +57,40 @@ function App() {
           style={{
             left: `${item.left}%`,
             animationDelay: `${item.delay}s`,
-            animationDuration: `${item.duration}s`
+            animationDuration: `${item.duration}s`,
           }}
         >
           {item.emoji}
         </div>
       ))}
 
-      {/* Pizza cursor */}
+      {/* CURSOR */}
       <div
         className="burger-cursor"
         style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`,
-          transform: 'translate(-50%, -50%)'
+          left: mousePosition.x,
+          top: mousePosition.y,
+          transform: "translate(-50%, -50%)",
         }}
       >
         🍔
       </div>
 
       <Header />
- <LeftMenu />
-      {/* 🔥 ROUTES */}
-      <Routes>
-        <Route path="/" element={<Food />} />
-        <Route path="/payment" element={<Payment />} />
-      </Routes>
 
+      <div className="main-layout">
+        <LeftMenu />
+
+        <div className="food-page">
+          <Routes>
+            <Route path="/" element={<Food />} />
+            <Route path="/sushi" element={<Sushi />} />
+            <Route path="/payment" element={<Payment />} />
+          </Routes>
+        </div>
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
