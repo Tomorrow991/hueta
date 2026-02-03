@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+
 import Header from './Header';
 import Footer from './Footer';
 import Food from './Food';
+import Payment from './Payment';
+import LeftMenu from "./LeftMenu";
 
 function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -15,10 +19,9 @@ function App() {
 
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Create floating food emojis
     const emojis = ['🍔', '🍕', '🌭', '🍟', '🌮', '🍿', '🥤', '🍦', '🍩', '🧇', '🥙', '🌯'];
     const generatedEmojis = [];
-    
+
     for (let i = 0; i < 20; i++) {
       generatedEmojis.push({
         emoji: emojis[Math.floor(Math.random() * emojis.length)],
@@ -27,7 +30,7 @@ function App() {
         duration: 15 + Math.random() * 10
       });
     }
-    
+
     setFoodEmojis(generatedEmojis);
 
     return () => {
@@ -51,21 +54,27 @@ function App() {
           {item.emoji}
         </div>
       ))}
-      
+
       {/* Pizza cursor */}
-      <div 
-        className="pizza-cursor" 
-        style={{ 
-          left: `${mousePosition.x}px`, 
+      <div
+        className="burger-cursor"
+        style={{
+          left: `${mousePosition.x}px`,
           top: `${mousePosition.y}px`,
           transform: 'translate(-50%, -50%)'
         }}
       >
-        🍕
+        🍔
       </div>
-      
+
       <Header />
-      <Food />
+ <LeftMenu />
+      {/* 🔥 ROUTES */}
+      <Routes>
+        <Route path="/" element={<Food />} />
+        <Route path="/payment" element={<Payment />} />
+      </Routes>
+
       <Footer />
     </div>
   );
