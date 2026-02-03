@@ -1,0 +1,43 @@
+.fastfood-footer {
+  background: linear-gradient(135deg, #ff3c00, #ff9f00);
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px 20px;
+  margin-top: 80px;
+  font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+}
+
+.footer-emojis {
+  font-size: 32px;
+  margin-bottom: 10px;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+.footer-title {
+  font-size: 28px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-text {
+  font-size: 16px;
+  opacity: 0.95;
+  margin-bottom: 20px;
+}
+
+.footer-bottom {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
