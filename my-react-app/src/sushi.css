@@ -90,3 +90,74 @@
     grid-template-columns: 1fr;
   }
 }
+/* 🔍 ПОИСК */
+.search-box {
+  position: relative;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 45px 15px 20px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #000;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #ff5722;
+  box-shadow: 0 0 15px rgba(255, 87, 34, 0.3);
+}
+
+.clear-search {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.clear-search:hover {
+  background: #e64a19;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.search-results {
+  text-align: center;
+  margin: 10px 0;
+  color: #666;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 18px;
+}
+
+.no-results p {
+  margin: 0;
+}
