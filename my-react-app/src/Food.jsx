@@ -1,53 +1,52 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+import { useCart } from "./context/CartContext";
 import "./Food.css";
 
 const foodMenu = [
   {
     id: 1,
-    name: "Pizza",
+    name: "Пицца",
     image: "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-    recipe: "Dough, tomato sauce, mozzarella, basil",
+    recipe: "Тесто, томатный соус, моцарелла, базилик",
     price: 8,
   },
   {
     id: 2,
-    name: "Burger",
+    name: "Бургер",
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
-    recipe: "Bun, beef patty, cheese, lettuce, sauce",
+    recipe: "Булка, говяжья котлета, сыр, салат, соус",
     price: 8,
   },
   {
     id: 3,
-    name: "Hot Dog",
+    name: "Хот-дог",
     image:
       "https://s.yimg.com/ny/api/res/1.2/Ja7TP8wzyQayr5cD90XO9g--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/food_republic_969/682da8ede78ff8fb5d0cfb7b7bf42ec6",
-    recipe: "Sausage, bun, mustard, ketchup",
+    recipe: "Сосиска, булка, горчица, кетчуп",
     price: 8,
   },
   {
     id: 4,
-    name: "Fries",
+    name: "Картошка фри",
     image:
       "https://i.pinimg.com/736x/80/34/37/80343721093255119bc76ff45bb2b101.jpg",
-    recipe: "Potatoes, salt, oil",
+    recipe: "Картофель, соль, масло",
     price: 8,
   },
   {
     id: 5,
-    name: "Black Burger",
+    name: "Чёрный бургер",
     image:
       "https://img.freepik.com/free-photo/grilled-beef-burger-with-melted-cheddar-cheese-generative-ai_188544-40944.jpg?semt=ais_hybrid",
-    recipe: "Black bun, beef patty, cheese",
+    recipe: "Чёрная булка, говяжья котлета, сыр",
     price: 8,
   },
   {
     id: 6,
-    name: "Hot Chicken Wings",
+    name: "Острые крылышки",
     image:
       "https://i.pinimg.com/736x/67/67/d3/6767d3f1b11332b59942d4f491e0bc5a.jpg",
-    recipe: "Spicy chicken wings with sauce",
+    recipe: "Острые куриные крылышки с соусом",
     price: 8,
   },
 ];
@@ -55,9 +54,7 @@ const foodMenu = [
 function Food() {
   const [animateId, setAnimateId] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
-  
-  const { cart, addToCart, removeFromCart, totalPrice } = useCart();
+  const { addToCart } = useCart();
 
   const handleAddToCart = (food) => {
     addToCart(food);
@@ -71,15 +68,14 @@ function Food() {
   );
 
   return (
-    <div className="food-page">
-      <div className="menu">
-        <h2>🍔 Fast Food Menu</h2>
+    <div className="menu">
+      <h2>🍔 Бургеры</h2>
 
         <div className="search-box">
           <input
             type="text"
             className="search-input"
-            placeholder="🔍 Search for food..."
+            placeholder="🔍 Поиск блюд..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -95,13 +91,13 @@ function Food() {
 
         {searchQuery && (
           <p className="search-results">
-            Found {filteredFood.length} dish{filteredFood.length !== 1 ? 'es' : ''}
+            Найдено {filteredFood.length} {filteredFood.length === 1 ? 'блюдо' : filteredFood.length < 5 ? 'блюда' : 'блюд'}
           </p>
         )}
 
         {filteredFood.length === 0 && (
           <div className="no-results">
-            <p>😔 No dishes found for "{searchQuery}"</p>
+            <p>😔 Ничего не найдено для "{searchQuery}"</p>
           </div>
         )}
 
@@ -126,48 +122,12 @@ function Food() {
                   }`}
                   onClick={() => handleAddToCart(food)}
                 >
-                  ➕ Add to cart
+                  ➕ В корзину
                 </button>
               </div>
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="cart">
-        <h2>🛒 Cart</h2>
-
-        {cart.length === 0 && <p className="empty">Cart is empty</p>}
-
-        {cart.map((item) => (
-          <div className="cart-item" key={item.id}>
-            <span>{item.name}</span>
-            <span>x{item.qty}</span>
-            <span>{item.qty * item.price} €</span>
-            <button
-              className="remove-btn"
-              onClick={() => removeFromCart(item.id)}
-            >
-              ✕
-            </button>
-          </div>
-        ))}
-
-        {cart.length > 0 && (
-          <>
-            <div className="total">
-              Total: <strong>{totalPrice.toFixed(2)} €</strong>
-            </div>
-
-            <button
-              className="checkout-btn"
-              onClick={() => navigate("/payment")}
-            >
-              Checkout
-            </button>
-          </>
-        )}
-      </div>
     </div>
   );
 }

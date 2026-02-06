@@ -8,11 +8,11 @@ function Footer() {
       </div>
 
       <h2 className="footer-title">
-        Fast • Tasty • Fun
+        Быстро • Вкусно • Весело
       </h2>
 
       <p className="footer-text">
-        Made with extra cheese & zero regrets 😎
+        Сделано с любовью и без сожалений 😎
       </p>
 
       <div className="footer-bottom">
