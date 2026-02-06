@@ -8,6 +8,7 @@ import Food from "./Food";
 import Sushi from "./sushi";
 import Payment from "./Payment";
 import LeftMenu from "./LeftMenu";
+import Cart from "./components/Cart";
 
 function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -88,8 +89,10 @@ function App() {
             <Route path="/payment" element={<Payment />} />
           </Routes>
         </div>
+
       </div>
       <Footer />
+      <Cart />
     </>
   );
 }

@@ -1,20 +1,19 @@
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectCartCount } from "../store/cartSlice";
+import { useCart } from "../context/CartContext";
 import "./GlobalCart.css";
 
 function GlobalCart() {
-  const cartCount = useSelector(selectCartCount);
+  const { totalCount } = useCart();
   const navigate = useNavigate();
 
-  if (cartCount === 0) return null;
+  if (totalCount === 0) return null;
 
   return (
-    <button 
+    <button
       className="global-cart-btn"
-      onClick={() => navigate("/food")}
+      onClick={() => navigate("/")}
     >
-      🛒 <span className="cart-badge">{cartCount}</span>
+      🛒 <span className="cart-badge">{totalCount}</span>
     </button>
   );
 }

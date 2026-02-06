@@ -12,7 +12,7 @@ function LeftMenu() {
           isActive ? "menu-btn active" : "menu-btn"
         }
       >
-        🍔 Fast Food
+        🍔 Бургеры
       </NavLink>
 
       <NavLink
@@ -21,7 +21,7 @@ function LeftMenu() {
           isActive ? "menu-btn active sushi" : "menu-btn sushi"
         }
       >
-        🍣 Sushi
+        🍣 Суши
       </NavLink>
     </aside>
   );
