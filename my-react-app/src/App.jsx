@@ -8,7 +8,6 @@ import Food from "./Food";
 import Sushi from "./sushi";
 import Payment from "./Payment";
 import LeftMenu from "./LeftMenu";
-import GlobalCart from "./components/GlobalCart";
 import Cart from "./components/Cart";
 
 function App() {
@@ -91,10 +90,9 @@ function App() {
           </Routes>
         </div>
 
-        <Cart />
       </div>
       <Footer />
-      <GlobalCart />
+      <Cart />
     </>
   );
 }
